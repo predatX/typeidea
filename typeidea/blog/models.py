@@ -10,6 +10,8 @@ class Category(models.Model):
 		(STATUS_NORMAL, '正常'),
 		(STATUS_DELETE, '删除'),
 	)
+	def __str__(self):
+		return self.name
 
 	name = models.CharField(max_length=50, verbose_name='名称')
 	status = models.PositiveIntegerField(default=STATUS_NORMAL,
