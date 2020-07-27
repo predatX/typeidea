@@ -4,6 +4,8 @@ from django.utils.html import format_html
 
 from .models import Post, Category, Tag
 from .adminforms import PostAdminForm
+from typeidea.custom_site import custom_site
+# from typeidea.custom_site import *
 
 # Register your models here.
 
@@ -37,7 +39,8 @@ class TagAdmin(admin.ModelAdmin):
     	obj.owner = request.user
     	return super(TagAdmin, self).save_model(request,obj, form, change)
 
-@admin.register(Post)
+@admin.register(Post, site=custom_site)
+# @admin.register(Post)
 # class PostAdmin(admin.ModelAdmin):
 # 	form = PostAdminForm
 
@@ -102,12 +105,19 @@ class PostAdmin(admin.ModelAdmin):
 		})
 	)
 
+	# def operator(self, obj):
+	# 	return format_html(
+	# 		'<a href="{}">EDITER~</a>',
+	# 		reverse('admin:blog_post_change', args=(obj.id,))
+	# )
+	# operator.short_description='OPERATION~'
+
 	def operator(self, obj):
 		return format_html(
 			'<a href="{}">EDITER~</a>',
-			reverse('admin:blog_post_change', args=(obj.id,))
-		)
-	operator.short_description='OPERATION~'
+			reverse('cus_admin:blog_post_change', args=(obj.id,))
+	)
+	operator.short_description='OPERATION~'	
 
 	def save_model(self, request, obj, form, change):
 		obj.owner = request.user
