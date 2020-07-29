@@ -5,4 +5,6 @@ class CustomSite(AdminSite):
 	site_title='Typeidea ADMINCONSOLE~'
 	index_title='HOME~'
 
-custome_site=CustomSite(name='cus_admin')
+custom_site=CustomSite(name='cus_admin')
+
+# print(custome_site)

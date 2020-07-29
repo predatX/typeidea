@@ -4,7 +4,7 @@ from django.utils.html import format_html
 
 from .models import Post, Category, Tag
 from .adminforms import PostAdminForm
-from typeidea.custom_site import custom_site
+from custom_site import *
 # from typeidea.custom_site import *
 
 # Register your models here.
@@ -39,7 +39,7 @@ class TagAdmin(admin.ModelAdmin):
     	obj.owner = request.user
     	return super(TagAdmin, self).save_model(request,obj, form, change)
 
-@admin.register(Post, site=custom_site)
+@admin.register(Post, site=CustomSite(name='cus_admin'))
 # @admin.register(Post)
 # class PostAdmin(admin.ModelAdmin):
 # 	form = PostAdminForm
